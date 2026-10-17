@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure Camera Network — Analytics</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="scanline"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◉</span>
+    <div>
+      <h1>SECURE CAMERA NETWORK</h1>
+      <p>Edge-AI surveillance &middot; trust fusion &middot; tamper detection</p>
+    </div>
+  </div>
+  <div class="engine" id="engineBadge">● detection</div>
+</header>
+
+<!-- KPI row -->
+<section class="kpis" id="kpis"></section>
+
+<!-- Add camera -->
+<section class="panel addbar">
+  <h2>➕ Add camera</h2>
+  <div class="addrow">
+    <input id="camName" placeholder="Name (e.g. Gate, Lab, CAM_001)">
+    <input id="camSource" placeholder="Stream link e.g. http://pi.local:8080/video">
+    <button class="btn blue" onclick="addCamera()">Add link</button>
+    <button class="btn green" onclick="addWebcam()">Add laptop webcam</button>
+  </div>
+  <p class="hint">Paste a Pi link like <code>http://pi.local:8080/video</code> or
+     <code>http://pi1.local:8080/video</code>. Webcam uses <code>webcam:0</code>.</p>
+  <p class="msg" id="addMsg"></p>
+</section>
+
+<!-- Camera grid -->
+<section class="grid" id="camGrid"></section>
+
+<!-- Charts -->
+<section class="charts">
+  <div class="panel chartbox"><h2>📈 Trust score — live</h2><canvas id="trustChart"></canvas></div>
+  <div class="panel chartbox"><h2>🎯 Detections per camera</h2><canvas id="detChart"></canvas></div>
+  <div class="panel chartbox"><h2>🛡️ Feed vs network health</h2><canvas id="healthChart"></canvas></div>
+  <div class="panel chartbox"><h2>⚡ FPS — live</h2><canvas id="fpsChart"></canvas></div>
+</section>
+
+<!-- Alert log -->
+<section class="panel">
+  <h2>🚨 Alert log <span class="sub">tamper / feed-loss / network anomaly</span></h2>
+  <div class="alertlog" id="alertLog"><div class="empty">No alerts yet. System nominal.</div></div>
+</section>
+
+<footer>Secure Camera Network Analytics · dashboard runs locally on this laptop</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
